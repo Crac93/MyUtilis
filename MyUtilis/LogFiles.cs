@@ -89,8 +89,13 @@ namespace MyUtilis
                 sw.Flush();
                 sw.Close();
             }
-            catch { }
+            catch {
+
+
+            }
         }
+
+
         public static void WriteLogExeption(string message)
         {
             try

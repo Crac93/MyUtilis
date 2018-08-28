@@ -169,7 +169,7 @@ namespace MyUtilis
 
                 procStartInfo.RedirectStandardOutput = true;
                 procStartInfo.UseShellExecute = false;
-                procStartInfo.CreateNoWindow = true;
+                procStartInfo.CreateNoWindow = false;
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
                 proc.StartInfo = procStartInfo;
                 proc.Start();
