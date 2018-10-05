@@ -9,11 +9,19 @@ using System.Threading.Tasks;
 using System.Xml;
 
 namespace MyUtilis
-{
+{/// <summary>
+/// Configuracion de archivo config  (XML)
+/// </summary>
 
     public class ConfigXML
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Section"></param>
+        /// <param name="AllKeys"></param>
+        /// <param name="Config"></param>
+        /// <returns></returns>
 
         public static int GetKeys(string Section, out string[] AllKeys, string Config)
         {
@@ -49,7 +57,14 @@ namespace MyUtilis
                 return -1;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Section"></param>
+        /// <param name="Key"></param>
+        /// <param name="Value"></param>
+        /// <param name="Config"></param>
+        /// <returns></returns>
         public static int GetValue(string Section, string Key, out string Value, string Config)
         {
             Value = null;
@@ -80,7 +95,14 @@ namespace MyUtilis
 
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Section"></param>
+        /// <param name="Key"></param>
+        /// <param name="Value"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
 
         public static int SetValue(string Section, string Key, string Value, string config)
         {
@@ -118,7 +140,13 @@ namespace MyUtilis
                 return -1;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Section"></param>
+        /// <param name="Key"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
         public static int DelKey(string Section, string Key, string config)
         {
             try
@@ -164,7 +192,13 @@ namespace MyUtilis
         {
             XmlNode Child = XMLParentNodeValue.AppendChild(XMLDocument.CreateElement(XMLChildNodeValue));
         }
-
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="PathFile"></param>
+        /// <param name="Myelement"></param>
+        /// <param name="Myattribute"></param>
+        /// <returns></returns>
 
         public static String ReadXmlAttribute(String PathFile, String Myelement, String Myattribute)
         {
@@ -185,7 +219,12 @@ namespace MyUtilis
             }
             return (attribute);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="PathFile"></param>
+        /// <param name="element"></param>
+        /// <returns></returns>
 
         public static string ReadXmlElementValue(string PathFile, string element)
         {

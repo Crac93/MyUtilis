@@ -25,9 +25,9 @@ namespace MyUtilis
                 Prc.WaitForExit();
                 return Prc.ExitCode;
             }
-            catch
+            catch(Exception ex)
             {
-                return -1;
+                throw new Exception(ex.Message.ToString().Trim(' ')); 
             }
         }
 
@@ -46,6 +46,19 @@ namespace MyUtilis
             {
                 throw new ArgumentException(ex.Message);
             }
+        }
+
+        public bool VerifyProcessRun(string processName)
+        {
+            bool response = false;
+
+            Process[] procesos = Process.GetProcesses();
+            foreach (Process proceso in procesos)
+            {
+                if (proceso.ProcessName == processName)
+                    response = true;
+            }
+            return response;
         }
     }
 }

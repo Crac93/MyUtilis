@@ -8,10 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MyUtilis
-{
+{/// <summary>
+/// 
+/// </summary>
     public class LogFiles
     {
-      
+      /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="logMessage"></param>
+      /// <param name="path"></param>
+      /// <param name="AutomaticFiles"></param>
         public static void LogWrite(string logMessage, string path, bool AutomaticFiles)
         {
             String Year = DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture);
@@ -49,7 +56,11 @@ namespace MyUtilis
 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logMessage"></param>
+        /// <param name="path"></param>
         public static void LogWrite(string logMessage, string path)
         {
             try
@@ -64,7 +75,11 @@ namespace MyUtilis
 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logMessage"></param>
+        /// <param name="txtWriter"></param>
         private static void Log(string logMessage, TextWriter txtWriter)
         {
             try
@@ -78,7 +93,10 @@ namespace MyUtilis
             }
         }
 
-
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="ex"></param>
         public static void WriteLogExeption(Exception ex)
         {
             try
@@ -95,7 +113,10 @@ namespace MyUtilis
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
         public static void WriteLogExeption(string message)
         {
             try

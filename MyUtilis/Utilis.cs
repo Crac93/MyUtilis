@@ -13,20 +13,29 @@ namespace MyUtilis
 
     public class Utilis
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string Debug()
         {
             string format = "MM.dd.yy HH:mm:ss";
             return (" [" + DateTime.Now.ToString(format) + "] ");
         }
-
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <returns></returns>
         public static string GetUniqueID()
         {
             string format = "MMddyyHHmmss";
 
             return (DateTime.Now.ToString(format));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Seconds"></param>
         public static void Sleep(int Seconds)
         {
             int miliseconds
@@ -83,7 +92,10 @@ namespace MyUtilis
 
         public static string SystemType = System.Environment.Is64BitOperatingSystem.ToString();
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string GetDHCPServers()
         {
             string result = null;
@@ -104,7 +116,10 @@ namespace MyUtilis
             }
             return result;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string DefaulGateway()
         {
             string result = null;

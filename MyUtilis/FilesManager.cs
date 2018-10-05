@@ -33,7 +33,11 @@ namespace MyUtilis
             }
 
         }
-
+        /// <summary>
+        /// Get all the files in specific folder
+        /// </summary>
+        /// <param name="FolderPath">Target folder</param>
+        /// <returns></returns>
         public static string[] GetAllFilesInFolder(string FolderPath)
         {
             Console.WriteLine(Utilis.Debug() + "GetAllFilesInFolder()");
@@ -65,7 +69,10 @@ namespace MyUtilis
 
             return Result;
         }
-
+        /// <summary>
+        /// Return the string path of folder
+        /// </summary>
+        /// <returns></returns>
         public static string GetFolderPath()
         {
             string FolderPath = null;
@@ -78,7 +85,10 @@ namespace MyUtilis
             return (FolderPath);
 
         }
-
+        /// <summary>
+        /// Open file dialog and return the string path.
+        /// </summary>
+        /// <returns></returns>
         public static string GetFilePath()
         {
             string FilePath = null;
@@ -224,6 +234,7 @@ namespace MyUtilis
             else
             {
                 Console.WriteLine(Utilis.Debug() + "Error: " + FilePath + "does not exists . . . ");
+                
             }
 
             return (Result);
