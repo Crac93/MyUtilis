@@ -106,5 +106,46 @@ namespace MyUtilis.Windows
             }
             return firstName + " " + lastName;
         }
+        /// <summary>
+        /// Obtener toda la informacion de un Empleado
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public static object GetAllInfoUser(string username)
+        {
+            var _infoUser = new Dictionary<string, string>();
+
+            using (var dsSearcher = new DirectorySearcher())
+            {
+                var idx = username.IndexOf('\\');
+                if (idx > 0)
+                    username = username.Substring(idx + 1);
+                dsSearcher.Filter = string.Format("(&(objectClass=user)(samaccountname={0}))", username);
+                SearchResult result = dsSearcher.FindOne();
+                if (result != null)
+                {
+                    using (var user = new DirectoryEntry(result.Path))
+                    {
+                        _infoUser.Add("FirstName", (string)user.Properties["givenName"].Value);
+                        _infoUser.Add("LastName", (string)user.Properties["sn"].Value);
+                        _infoUser.Add("DisplayName", (string)user.Properties["name"].Value);
+                        _infoUser.Add("JobTitle", (string)user.Properties["title"].Value);
+                        _infoUser.Add("Telephone", (string)user.Properties["telephoneNumber"].Value);
+                        _infoUser.Add("Ingresed", Convert.ToString(user.Properties["whenCreated"].Value));
+                        _infoUser.Add("Department", (string)user.Properties["department"].Value);
+                        _infoUser.Add("Address", (string)user.Properties["mail"].Value);
+                        _infoUser.Add("BoosAddress", (string)user.Properties["extensionAttribute11"].Value);
+                        _infoUser.Add("EmployId", (string)user.Properties["employeeID"].Value);
+                        //foreach (var item in user.Properties.PropertyNames)
+                        //{
+                        //    if (item.ToString() != "objectClass")
+                        //        _infoUser.Add(item.ToString(), Convert.ToString(user.Properties[item.ToString()].Value));
+                        //    _infoUser.Add(user.Properties.PropertyNames., user.Properties.Values);
+                        //}
+                    }
+                }
+            }
+            return _infoUser;
+        }
     }
 }

@@ -29,5 +29,16 @@ namespace MyUtils_UnitTest
             //Assert
             Assert.AreNotEqual(null, result);
         }
+        [TestMethod]
+        public void TestGetAllInfo()
+        {
+            //Arrange
+            var userName = @"avalosca";
+            //Act
+            var result = MyUtilis.Windows.Login.GetAllInfoUser(userName);
+            //Assert
+            Assert.AreNotEqual(null, result);
+        }
+
     }
 }
