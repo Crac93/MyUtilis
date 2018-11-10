@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace MyUtilis
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CMD
     { /// <summary>
       /// Run cmd 
       /// </summary>
       /// <param name="FileName">The name of console to run.</param>
+      /// <param name="Arguments">Arguemtns to send</param>
       /// <returns></returns>
       /// 
         public static int Run(string FileName, string Arguments)
@@ -25,29 +29,17 @@ namespace MyUtilis
                 Prc.WaitForExit();
                 return Prc.ExitCode;
             }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message.ToString().Trim(' ')); 
-            }
-        }
-
-        public int RunWithArguments(string[] Arguments)
-        {
-            try
-            {
-                Process Prcss = new Process();
-                Prcss.StartInfo.FileName = Arguments[1];
-                Prcss.StartInfo.Arguments = string.Join(" ", Arguments, 2, Arguments.Length - 2);
-                Prcss.Start();
-                Prcss.WaitForExit();
-                return Prcss.ExitCode;
-            }
             catch (Exception ex)
             {
-                throw new ArgumentException(ex.Message);
+                throw new Exception(ex.Message.ToString().Trim(' '));
             }
         }
-
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="processName"></param>
+        /// <returns></returns>
         public bool VerifyProcessRun(string processName)
         {
             bool response = false;

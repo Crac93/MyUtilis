@@ -176,6 +176,11 @@ namespace MyUtilis
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="XMLfile"></param>
+        /// <param name="RootValue"></param>
         public static void CreateXMLfile(string XMLfile, string RootValue)
         {
             XmlDocument XD = new XmlDocument();
@@ -188,6 +193,12 @@ namespace MyUtilis
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="XMLDocument"></param>
+        /// <param name="XMLParentNodeValue"></param>
+        /// <param name="XMLChildNodeValue"></param>
         public static void AppendChildtoXMLElement(XmlDocument XMLDocument, XmlNode XMLParentNodeValue, String XMLChildNodeValue)
         {
             XmlNode Child = XMLParentNodeValue.AppendChild(XMLDocument.CreateElement(XMLChildNodeValue));

@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace MyUtilis.Windows
 {
+    /// <summary>
+    /// Diferents methods to get information of employee.
+    /// </summary>
     public class Login
     {
         /// <summary>
@@ -136,12 +139,6 @@ namespace MyUtilis.Windows
                         _infoUser.Add("Address", (string)user.Properties["mail"].Value);
                         _infoUser.Add("BoosAddress", (string)user.Properties["extensionAttribute11"].Value);
                         _infoUser.Add("EmployId", (string)user.Properties["employeeID"].Value);
-                        //foreach (var item in user.Properties.PropertyNames)
-                        //{
-                        //    if (item.ToString() != "objectClass")
-                        //        _infoUser.Add(item.ToString(), Convert.ToString(user.Properties[item.ToString()].Value));
-                        //    _infoUser.Add(user.Properties.PropertyNames., user.Properties.Values);
-                        //}
                     }
                 }
             }

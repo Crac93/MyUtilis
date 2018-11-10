@@ -20,11 +20,6 @@ namespace MyUtilis.Comunication
             string responseData;
             Int32 bytes;
 
-
-            Console.WriteLine(Utilis.Debug() + "SendMessage()");
-            Console.WriteLine(Utilis.Debug() + "IP: " + IP);
-            Console.WriteLine(Utilis.Debug() + "Port: " + Port);
-            Console.WriteLine(Utilis.Debug() + "Message: " + Message);
             try
             {
                 client = new TcpClient(IP, Port);
@@ -34,7 +29,7 @@ namespace MyUtilis.Comunication
                 stream = client.GetStream();
                 stream.Write(data, 0, data.Length);
 
-                Console.WriteLine(Utilis.Debug() + "Result: Message Sent");
+               
 
                 data = new byte[256];
                 responseData = string.Empty;
@@ -50,14 +45,12 @@ namespace MyUtilis.Comunication
 
             catch (ArgumentNullException e)
             {
-                Console.WriteLine(Utilis.Debug() + "Error (ArgumentNullException): " + e.ToString());
-                Result = Utilis.Debug() + "Error (ArgumentNullException): " + e.ToString();
+             
             }
 
             catch (SocketException e)
             {
-                Console.WriteLine(Utilis.Debug() + "Error (SocketException): " + e.ToString());
-                Result = Utilis.Debug() + "Error (SocketException): " + e.ToString();
+              
             }
             return Result;
         }
@@ -81,11 +74,11 @@ namespace MyUtilis.Comunication
                 // Enter the listening loop.
                 while (true)
                 {
-                    Console.Write(Utilis.Debug() + "Waiting for a connection... ");
+                  //  Console.Write(Utilis.Debug() + "Waiting for a connection... ");
                     // Perform a blocking call to accept requests.
                     // You could also user server.AcceptSocket() here.
                     TcpClient client = server.AcceptTcpClient();
-                    Console.WriteLine(Utilis.Debug() + "Connected!");
+                   // Console.WriteLine(Utilis.Debug() + "Connected!");
                     data = null;
                     // Get a stream object for reading and writing
                     NetworkStream stream = client.GetStream();
@@ -95,13 +88,13 @@ namespace MyUtilis.Comunication
                     {
                         // Translate data bytes to a ASCII string.
                         data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                        Console.WriteLine(Utilis.Debug() + "Received: {0}", data);
+                     //   Console.WriteLine(Utilis.Debug() + "Received: {0}", data);
                         // Process the data sent by the client.
                         data = data.ToUpper();
                         byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
                         // Send back a response.
                         stream.Write(msg, 0, msg.Length);
-                        Console.WriteLine(Utilis.Debug() + "Sent: {0}", data);
+                       // Console.WriteLine(Utilis.Debug() + "Sent: {0}", data);
                     }
                     // Shutdown and end connection
                     client.Close();

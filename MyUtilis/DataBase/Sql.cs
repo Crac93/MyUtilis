@@ -40,11 +40,17 @@ namespace MyUtilis.DataBase
             }
             catch (Exception ex)
             {
-                Console.WriteLine(Utilis.Debug() + "SQL statement can not be executed: " + ex.Message.ToString().Trim());
+              //  Console.WriteLine(Utilis.Debug() + "SQL statement can not be executed: " + ex.Message.ToString().Trim());
                 throw new ArgumentException("SQL statement can not be executed:" + "\n" + ex.Message);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ConnectionString"></param>
+        /// <param name="ProcedureName"></param>
+        /// <param name="Dt_Parameters"></param>
+        /// <returns></returns>
         public static DataSet ExecuteProcedure(string ConnectionString, string ProcedureName, Dictionary<string, object> Dt_Parameters)
         {
             try

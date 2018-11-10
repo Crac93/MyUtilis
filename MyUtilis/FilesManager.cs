@@ -196,8 +196,13 @@ namespace MyUtilis
             file.Close();
 
         }
-
-        public static bool WriteLine(string FilePath, string TextLine)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        /// <param name="TextLine"></param>
+        /// <returns></returns>
+        public static bool WriteLineTextFile(string FilePath, string TextLine)
         {
             Console.WriteLine(Utilis.Debug() + "WriteLine()");
             Console.WriteLine(Utilis.Debug() + "FilePath: " + FilePath);
@@ -255,6 +260,13 @@ namespace MyUtilis
 
             return Result;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FilePath"></param>
+        /// <param name="Olds"></param>
+        /// <param name="News"></param>
+        /// <returns></returns>
 
         public static bool ReplaceStringArrayIntoTextFile(string FilePath, string[] Olds, string[] News)
         {

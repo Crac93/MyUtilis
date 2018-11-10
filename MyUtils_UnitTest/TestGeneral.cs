@@ -33,11 +33,22 @@ namespace MyUtils_UnitTest
         public void TestGetAllInfo()
         {
             //Arrange
-            var userName = @"avalosca";
+            var userName = @"j";
             //Act
             var result = MyUtilis.Windows.Login.GetAllInfoUser(userName);
             //Assert
             Assert.AreNotEqual(null, result);
+        }
+
+        [TestMethod]
+        public void TestGetInfoMachine()
+        {
+            //Arrange
+            var path = @"d";
+            //Act
+            MyUtilis.Utilis.GetLocalHostData(path);
+            //Assert
+        
         }
 
     }

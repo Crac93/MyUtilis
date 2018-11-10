@@ -10,20 +10,81 @@ using System.Threading.Tasks;
 
 namespace MyUtilis
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class Utilis
     {
+        /// <summary>
+        /// Get te curren user of machine.
+        /// </summary>
+        /// <returns></returns>
+        public static string User { get { return System.Environment.UserName.ToString(); } }
+
+        /// <summary>
+        /// Get the currrent machine name.
+        /// </summary>
+        public static string MachineName { get { return System.Environment.MachineName.ToString(); } }
+
+        /// <summary>
+        /// Get the current domain.
+        /// </summary>
+        public static string Domain { get { return System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName.ToString(); } }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public static string Debug()
-        {
-            string format = "MM.dd.yy HH:mm:ss";
-            return (" [" + DateTime.Now.ToString(format) + "] ");
-        }
+        /// 
+
+        public static string NETframework { get { return System.Runtime.InteropServices.RuntimeEnvironment.GetSystemVersion().ToString(); } }
+
         /// <summary>
-        /// /
+        /// 
+        /// </summary>
+        public static string ServicePack
+        {
+            get
+            {
+                return System.Environment.OSVersion.ServicePack.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Get OS Version
+        /// </summary>
+        public static string OSversion
+        {
+            get
+            {
+                return System.Environment.OSVersion.VersionString;
+            }
+        }
+
+        /// <summary>
+        /// Get OSplataform
+        /// </summary>
+        public static string OSplatform
+        {
+            get
+            {
+                return System.Environment.OSVersion.Platform.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Get SystemType, example : 64 bit.
+        /// </summary>
+        public static string SystemType
+        {
+            get
+            {
+                return System.Environment.Is64BitOperatingSystem.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 
         /// </summary>
         /// <returns></returns>
         public static string GetUniqueID()
@@ -43,54 +104,54 @@ namespace MyUtilis
             Thread.Sleep(miliseconds);
         }
 
-        public static string Hostname = System.Environment.MachineName.ToString();
-
-        public static string Domain = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName.ToString();
-
-        public static string MACAddress()
+        /// <summary>
+        /// Get the mac adress of machine
+        /// </summary>
+        public static string MACAddress
         {
-            string Result = null;
-
-            NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
-
-            foreach (NetworkInterface ni in interfaces)
+            get
             {
-                if (ni.OperationalStatus ==
-                    OperationalStatus.Up && ni.GetPhysicalAddress().GetAddressBytes().Length != 0)
+                string Result = null;
+
+                NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+                foreach (NetworkInterface ni in interfaces)
                 {
-                    Result = ni.GetPhysicalAddress().ToString();
+                    if (ni.OperationalStatus ==
+                        OperationalStatus.Up && ni.GetPhysicalAddress().GetAddressBytes().Length != 0)
+                    {
+                        Result = ni.GetPhysicalAddress().ToString();
+                    }
                 }
+                return Result;
             }
-            return Result;
         }
 
-        public static string GetLocalIP()
+        /// <summary>
+        ///  Get the local IP
+        /// </summary>
+        public static string LocalIP
         {
-            IPHostEntry host;
-            string localIP = "";
-            host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (IPAddress ip in host.AddressList)
+            get
             {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                IPHostEntry host;
+                string localIP = "";
+                host = Dns.GetHostEntry(Dns.GetHostName());
+                foreach (IPAddress ip in host.AddressList)
                 {
-                    localIP = ip.ToString();
-                    break;
+                    if (ip.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        localIP = ip.ToString();
+                        break;
+                    }
                 }
+                return localIP;
             }
-            return localIP;
         }
 
-        public static string User = System.Environment.UserName.ToString();
 
-        public static string NETframework = System.Runtime.InteropServices.RuntimeEnvironment.GetSystemVersion().ToString();
 
-        public static string ServicePack = System.Environment.OSVersion.ServicePack.ToString();
 
-        public static string OSversion = System.Environment.OSVersion.VersionString;
-
-        public static string OSplatform = System.Environment.OSVersion.Platform.ToString();
-
-        public static string SystemType = System.Environment.Is64BitOperatingSystem.ToString();
 
         /// <summary>
         /// 
@@ -143,36 +204,35 @@ namespace MyUtilis
             return IsDHCPEnabled;
         }
 
-        public static string LocalHostData()
+        /// <summary>
+        /// Gets the local data and puts in a pad.
+        /// </summary>
+        public static void GetLocalHostData(string path)
         {
 
-            Console.WriteLine(Utilis.Debug() + "LocalHostData()");
             string Line = System.Environment.NewLine;
-            string Result = null;
+            var Result = new Dictionary<string, string>();
 
-            try
-            {
-                Result =
-                           Line +
-                           " [ Hostname ] ------------> " + Hostname + Line +
-                           " [ Username ] ------------> " + User + Line +
-                           " [ MAC Address ] ---------> " + MACAddress() + Line +
-                           " [ Default Gateway ] -----> " + DefaulGateway() + Line +
-                           " [ Domain ] --------------> " + Domain + Line +
-                           " [ I.P. address ] --------> " + GetLocalIP() + Line +
-                           " [ DHCP Servers ] --------> " + GetDHCPServers() + Line +
-                           " [ DHCP Enabled ] --------> " + DHCPEnabled() + Line +
-                           " [ .NET framework ] ------> " + NETframework + Line +
-                           " [ OS version ] ----------> " + OSversion + Line +
-                           " [ OS platform ] ---------> " + OSplatform + Line +
-                           " [ OS is 64 bit type ] ---> " + SystemType + Line +
-                           Line;
-            }
-            catch { }
-            Console.WriteLine(Utilis.Debug() + "Result: " + Result);
-            return Result;
+            Result.Add("Macaddress:", MACAddress);
+            Result.Add("SystemType:", SystemType);
+            Result.Add("IpLocal:", LocalIP);
+            Result.Add("OsVersion:", OSversion);
+            //FilesManager.
+          
+            FilesManager.CreateTextFile(path, Result.ToString());
         }
 
+        public static string Debug()
+        {
+            string format = "MM.dd.yy HH:mm:ss";
+            return (" [" + DateTime.Now.ToString(format) + "] ");
+        }
+
+
+        /// <summary>
+        /// Execumte a comanda in CMD
+        /// </summary>
+        /// <param name="Command"></param>
         public static void ExecuteCommandSync(string Command)
         {
             Console.WriteLine(Utilis.Debug() + "ExecuteCommandSync()");
