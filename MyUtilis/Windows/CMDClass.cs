@@ -17,7 +17,6 @@ namespace MyUtilis.Windows
         {
             try
             {
-
                 System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + Command);
 
                 procStartInfo.RedirectStandardOutput = true;
