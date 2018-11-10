@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace MyUtilis.DataBase
 {
+    /// <summary>
+    /// Sql class 
+    /// </summary>
     public class SQL
     {
 

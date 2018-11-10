@@ -8,9 +8,18 @@ using System.Threading.Tasks;
 
 namespace MyUtilis.Comunication
 {
+    /// <summary>
+    /// Class to comunicate TCP/IP
+    /// </summary>
     public class TCPIP
     {
-
+        /// <summary>
+        /// Send a message via TCP/IP
+        /// </summary>
+        /// <param name="IP"></param>
+        /// <param name="Port"></param>
+        /// <param name="Message"></param>
+        /// <returns></returns>
         public static string SendMessage(string IP, int Port, string Message)
         {
             string Result = null;
@@ -45,18 +54,22 @@ namespace MyUtilis.Comunication
 
             catch (ArgumentNullException e)
             {
-             
+                throw new Exception(e.Message);
             }
 
             catch (SocketException e)
             {
-              
+                throw new Exception(e.Message);
             }
             return Result;
         }
 
 
-
+        /// <summary>
+        /// Listening TCP
+        /// </summary>
+        /// <param name="ipAddress"></param>
+        /// <param name="port"></param>
         public static void ListenTCP(string ipAddress, Int32 port)
         {
             TcpListener server = null;
@@ -111,6 +124,12 @@ namespace MyUtilis.Comunication
             }
 
         }
+        /// <summary>
+        /// Send a file via TCP
+        /// </summary>
+        /// <param name="pathFile"></param>
+        /// <param name="hostname"></param>
+        /// <param name="port"></param>
         public static void SendFileTCP(string pathFile, string hostname, int port)
         {
             IPHostEntry ipHost = Dns.GetHostEntry(hostname);

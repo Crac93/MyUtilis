@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace MyUtilis.DataBase
 {
+    /// <summary>
+    /// ORcle classs
+    /// </summary>
     public class Oracle
     {
+        /// <summary>
+        /// Excuete dataset
+        /// </summary>
+        /// <param name="ConnectionString"></param>
+        /// <param name="Query"></param>
+        /// <returns></returns>
         public static DataSet Execute(string ConnectionString, string Query)
         {
             try
@@ -52,6 +61,13 @@ namespace MyUtilis.DataBase
             }
         }
 
+        /// <summary>
+        /// Exucte Procedure
+        /// </summary>
+        /// <param name="ConnectionString"></param>
+        /// <param name="ProcedureName"></param>
+        /// <param name="Dt_Parameters"></param>
+        /// <returns></returns>
         public static DataSet ExecuteProcedure(string ConnectionString, string ProcedureName, DataTable Dt_Parameters)
         {
             try

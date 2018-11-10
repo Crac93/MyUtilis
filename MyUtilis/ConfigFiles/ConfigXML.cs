@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace MyUtilis
-{/// <summary>
-/// Configuracion de archivo config  (XML)
-/// </summary>
-
+namespace ConfigFilesLib
+{
+    /// <summary>
+    /// Configurate Xml 
+    /// </summary>
     public class ConfigXML
     {
         /// <summary>

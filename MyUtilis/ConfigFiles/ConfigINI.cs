@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyUtilis
+namespace ConfigFilesLib
 {
-    public class IniFiles
+    class ConfigINI
     {
         [DllImport("kernel32")]
         private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
@@ -26,7 +26,7 @@ namespace MyUtilis
         /// RFH_INI Constructor.
         /// </summary>
         /// <PARAM name="INIPath"></PARAM>
-        public IniFiles(string INIPath)
+        public ConfigINI(string INIPath)
         {
             path = INIPath;
         }
@@ -39,6 +39,7 @@ namespace MyUtilis
         /// <PARAM name="Key"></PARAM>
         /// Key Name
         /// <PARAM name="Value"></PARAM>
+        /// <param name="Path"></param>
         /// Value Name
         public void IniWriteValue(string Section, string Key, string Value, string Path)
         {
@@ -50,7 +51,7 @@ namespace MyUtilis
         /// </summary>
         /// <PARAM name="Section"></PARAM>
         /// <PARAM name="Key"></PARAM>
-        /// <PARAM name="Path"></PARAM>
+       
         /// <returns></returns>
         public string IniReadValue(string Section, string Key)
         {
@@ -124,6 +125,5 @@ namespace MyUtilis
                 }
             }
         }
-
     }
 }

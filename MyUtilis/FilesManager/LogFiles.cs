@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyUtilis
-{/// <summary>
-/// 
-/// </summary>
-    public class LogFiles
+namespace MyUtilis.FilesManager
+{
+    class LogFiles
     {
-      /// <summary>
-      /// 
-      /// </summary>
-      /// <param name="logMessage"></param>
-      /// <param name="path"></param>
-      /// <param name="AutomaticFiles"></param>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logMessage"></param>
+        /// <param name="path"></param>
+        /// <param name="AutomaticFiles"></param>
         public static void LogWrite(string logMessage, string path, bool AutomaticFiles)
         {
             String Year = DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture);
@@ -107,7 +104,8 @@ namespace MyUtilis
                 sw.Flush();
                 sw.Close();
             }
-            catch {
+            catch
+            {
 
 
             }

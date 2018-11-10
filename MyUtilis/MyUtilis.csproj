@@ -49,16 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CMD.cs" />
     <Compile Include="Comunication\TCPIP.cs" />
-    <Compile Include="ConfigXML.cs" />
+    <Compile Include="ConfigFiles\ConfigINI.cs" />
+    <Compile Include="ConfigFiles\ConfigXML.cs" />
     <Compile Include="DataBase\Oracle.cs" />
     <Compile Include="DataBase\SQL.cs" />
-    <Compile Include="FilesManager.cs" />
-    <Compile Include="IniFiles.cs" />
-    <Compile Include="LogFiles.cs" />
-    <Compile Include="Utilis.cs" />
+    <Compile Include="FilesManager\FileExt.cs" />
+    <Compile Include="FilesManager\FileExtOption.cs" />
+    <Compile Include="FilesManager\FileManagerClass.cs" />
+    <Compile Include="FilesManager\FolderOptions.cs" />
+    <Compile Include="FilesManager\LogFiles.cs" />
+    <Compile Include="Generalnformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Windows\CMDClass.cs" />
+    <Compile Include="Windows\ConsoleClass.cs" />
     <Compile Include="Windows\Login.cs" />
     <Compile Include="Windows\ScreenCapture.cs" />
   </ItemGroup>
