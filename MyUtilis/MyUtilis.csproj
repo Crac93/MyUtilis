@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Oracle.ManagedDataAccess">
-      <HintPath>..\..\Log File Viewer\Log File Viewer\bin\Debug\Oracle.ManagedDataAccess.dll</HintPath>
+      <HintPath>..\..\..\..\Landis.Functions\Landis.Functions\bin\Debug\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -40,6 +40,7 @@
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comunication\Emails.cs" />
+    <Compile Include="Comunication\MSMQ.cs" />
     <Compile Include="Comunication\TCPIP.cs" />
     <Compile Include="ConfigFiles\ConfigINI.cs" />
     <Compile Include="ConfigFiles\ConfigXML.cs" />
