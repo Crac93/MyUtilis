@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace MyUtilis.FilesManager
 {
-    class LogFiles
+    public class LogFiles
     {
+     
         /// <summary>
         /// 
         /// </summary>
