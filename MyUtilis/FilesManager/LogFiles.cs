@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace MyUtilis.FilesManager
 {
+    /// <summary>
+    /// Esta clase es estatica, para usar la dinimica ir a: Windows.TraceLog
+    /// </summary>
     public class LogFiles
     {
      
@@ -17,7 +20,7 @@ namespace MyUtilis.FilesManager
         /// <param name="logMessage"></param>
         /// <param name="path"></param>
         /// <param name="AutomaticFiles"></param>
-        public static void LogWrite(string logMessage, string path, bool AutomaticFiles)
+        public static void WriteLog(string logMessage, string path, bool AutomaticFiles)
         {
             String Year = DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture);
             String Month = DateTime.Now.ToString("MMM", CultureInfo.InvariantCulture);
@@ -55,11 +58,11 @@ namespace MyUtilis.FilesManager
             }
         }
         /// <summary>
-        /// 
+        /// Escribe un log de manera sencilla
         /// </summary>
         /// <param name="logMessage"></param>
         /// <param name="path"></param>
-        public static void LogWrite(string logMessage, string path)
+        public static void LogWriteSimple(string logMessage, string path)
         {
             try
             {
@@ -73,6 +76,8 @@ namespace MyUtilis.FilesManager
 
             }
         }
+
+
         /// <summary>
         /// 
         /// </summary>

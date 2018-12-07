@@ -74,6 +74,8 @@
     <Compile Include="Windows\Login.cs" />
     <Compile Include="Windows\ScreenCapture.cs" />
     <Compile Include="Windows\TaskScheduler.cs" />
+    <Compile Include="Windows\TraceEvent.cs" />
+    <Compile Include="Windows\TraceLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
