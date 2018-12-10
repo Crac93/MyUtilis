@@ -41,14 +41,14 @@ namespace MyUtils_UnitTest
         }
 
         [TestMethod]
-        public void TestGetInfoMachine()
+        public void TestTaskSche()
         {
             //Arrange
-            var path = @"d";
+            MyUtilis.Windows.TaskScheduler.CreateTask("Test", "Description task", @"C:\NT_Sq\UtilinetIPConsole\UtilinetIPConsole.exe", 1, 1, false);
             //Act
           //  MyUtilis.
             //Assert
-        
+            
         }
 
     }
