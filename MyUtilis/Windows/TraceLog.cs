@@ -13,8 +13,18 @@ namespace MyUtilis.Windows
     /// </summary>
     public class TraceLog
     {
+        /// <summary>
+        /// Ruta del log file.
+        /// </summary>
         public string PathLog { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string PathName { get; set; }
+        /// <summary>
+        /// Crea caprtas automaticamemnte, junto con la ruta del path.
+        /// </summary>
         public bool AutomaticFiles { get; set; }
 
         /// <summary>
