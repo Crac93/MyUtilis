@@ -38,8 +38,6 @@ namespace MyUtilis.Comunication
                 stream = client.GetStream();
                 stream.Write(data, 0, data.Length);
 
-               
-
                 data = new byte[256];
                 responseData = string.Empty;
 

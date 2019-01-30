@@ -60,6 +60,7 @@
     <Compile Include="Comunication\TCPIP.cs" />
     <Compile Include="ConfigFiles\ConfigINI.cs" />
     <Compile Include="ConfigFiles\ConfigXML.cs" />
+    <Compile Include="DataBase\AccessDb.cs" />
     <Compile Include="DataBase\Oracle.cs" />
     <Compile Include="DataBase\SQL.cs" />
     <Compile Include="FilesManager\FileExt.cs" />
