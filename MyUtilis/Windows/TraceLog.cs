@@ -21,7 +21,7 @@ namespace MyUtilis.Windows
         /// <summary>
         /// 
         /// </summary>
-        public string PathName { get; set; }
+        public string LogName { get; set; }
         /// <summary>
         /// Crea caprtas automaticamemnte, junto con la ruta del path.
         /// </summary>
@@ -32,8 +32,8 @@ namespace MyUtilis.Windows
         /// </summary>
         /// <param name="path"></param>
         /// <param name="automaticFiles">Crea</param>
-        /// <param name="pathName"></param>
-        public TraceLog(string path, bool automaticFiles, string pathName = "Log.txt")
+        /// <param name="logName"></param>
+        public TraceLog(string path, bool automaticFiles, string logName = "Log.txt")
         {
             try
             {
@@ -42,15 +42,15 @@ namespace MyUtilis.Windows
 
                 PathLog = path;
                 AutomaticFiles = automaticFiles;
-                if (pathName != "Log.txt")
-                    PathName = pathName;
+                if (logName != "Log.txt")
+                    LogName = logName;
             }
             catch (Exception ex)
             {
                 throw new ArgumentException(ex.Message);
             }
         }
-      
+
         /// <summary>
         /// 
         /// </summary>
@@ -65,7 +65,7 @@ namespace MyUtilis.Windows
             {
                 if (AutomaticFiles)
                 {
-                    string NewLogDay = Path.Combine(PathLog, Year, Month, "Log_" + Day + ".txt");
+                    string NewLogDay = Path.Combine(PathLog, Year, Month, LogName + "_" + Day + ".txt");
                     string PathYear = Path.Combine(PathLog, Year);
                     string PathMont = Path.Combine(PathLog, Year, Month);
 
@@ -82,7 +82,7 @@ namespace MyUtilis.Windows
                 }
                 else
                 {
-                    using (StreamWriter w = File.AppendText(PathLog + "\\" + PathName))
+                    using (StreamWriter w = File.AppendText(PathLog + "\\" + LogName))
                     {
                         Log(logMessage, w);
                     }
@@ -104,7 +104,7 @@ namespace MyUtilis.Windows
             try
             {
                 txtWriter.WriteLine("{0}: {1} ", "[" + DateTime.Now + "]", logMessage);
-                txtWriter.WriteLine("-------------------------------------------------------------------------------");
+
             }
             catch
             {
