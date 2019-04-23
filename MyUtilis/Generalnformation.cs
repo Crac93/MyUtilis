@@ -179,9 +179,10 @@ namespace MyUtilis
         /// 
         /// </summary>
         /// <returns></returns>
-        public static string GetUniqueID()
+        public static string GetUniqueId()
         {
-            string format = "MMddyyHHmmss";
+            string format;
+            format = "MMddyyHHmmss";
 
             return (DateTime.Now.ToString(format));
         }

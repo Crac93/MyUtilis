@@ -16,11 +16,11 @@ namespace MyUtilis.Comunication
         /// <summary>
         /// Send a message via TCP/IP
         /// </summary>
-        /// <param name="IP"></param>
-        /// <param name="Port"></param>
-        /// <param name="Message"></param>
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
+        /// <param name="message"></param>
         /// <returns></returns>
-        public static string SendMessage(string IP, int Port, string Message)
+        public static string SendMessage(string ip, int port, string message)
         {
             string Result = null;
             TcpClient client;
@@ -31,9 +31,9 @@ namespace MyUtilis.Comunication
 
             try
             {
-                client = new TcpClient(IP, Port);
+                client = new TcpClient(ip, port);
                 data = new byte[256];
-                data = System.Text.Encoding.ASCII.GetBytes(Message);
+                data = System.Text.Encoding.ASCII.GetBytes(message);
 
                 stream = client.GetStream();
                 stream.Write(data, 0, data.Length);
@@ -68,7 +68,7 @@ namespace MyUtilis.Comunication
         /// </summary>
         /// <param name="ipAddress"></param>
         /// <param name="port"></param>
-        public static void ListenTCP(string ipAddress, Int32 port)
+        public static void ListenTcp(string ipAddress, Int32 port)
         {
             TcpListener server = null;
             try
@@ -115,7 +115,7 @@ namespace MyUtilis.Comunication
             finally
             {
                 // Stop listening for new clients.
-                server.Stop();
+                server?.Stop();
             }
 
         }

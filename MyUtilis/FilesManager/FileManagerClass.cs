@@ -78,10 +78,10 @@ namespace FileManagerLib
         /// <returns></returns>
         public static List<string> GetFilesInFolder(string path, FileExt fileExt = FileExt.AllExtensions, FileExtOption fileOption = FileExtOption.FullPath)
         {
-            List<string> files = new List<string>();
+            var files = new List<string>();
             try
             {
-                string extension = "";
+                var extension = "";
                 switch (fileExt)
                 {
                     case FileExt.TXT:
@@ -106,14 +106,14 @@ namespace FileManagerLib
                         break;
                 }
 
-                string[] filePaths = Directory.GetFiles(path, "*" + extension + "*", SearchOption.AllDirectories);
+                var filePaths = Directory.GetFiles(path, "*" + extension + "*", SearchOption.AllDirectories);
 
                 switch (fileOption)
                 {
                     case FileExtOption.FullPath:
                         foreach (var file in filePaths)
                         {
-                            FileInfo f = new FileInfo(file);
+                            var f = new FileInfo(file);
                             files.Add(f.FullName);
                         }
                         break;
@@ -121,7 +121,7 @@ namespace FileManagerLib
 
                         foreach (var file in filePaths)
                         {
-                            FileInfo f = new FileInfo(file);
+                            var f = new FileInfo(file);
                             files.Add(f.Name);
                         }
                         break;
@@ -143,13 +143,13 @@ namespace FileManagerLib
         /// <returns></returns>
         public static string BrowseFolderPath()
         {
-            string FolderPath = null;
+            string folderPath = null;
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 
-            { FolderPath = dialog.SelectedPath; }
-            return (FolderPath);
+            { folderPath = dialog.SelectedPath; }
+            return (folderPath);
 
         }
 
@@ -159,13 +159,13 @@ namespace FileManagerLib
         /// <returns></returns>
         public static string BrowseFilePath()
         {
-            string FilePath = null;
+            string filePath = null;
             var dialog = new System.Windows.Forms.OpenFileDialog();
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                FilePath = dialog.FileName;
+                filePath = dialog.FileName;
 
-            return (FilePath);
+            return (filePath);
         }
 
         /// <summary>
