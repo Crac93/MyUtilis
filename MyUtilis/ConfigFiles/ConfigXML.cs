@@ -30,22 +30,20 @@ namespace ConfigFilesLib
 
             {
 
-                ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap()
+                var configFileMap = new ExeConfigurationFileMap()
                 {
                     ExeConfigFilename = Config
                 };
 
-                var AppConfig = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
-
-                var SectionProduct = AppConfig.GetSection(Section);
-
-                string myParamsSectionRawXml = SectionProduct.SectionInformation.GetRawXml();
-                XmlDocument sectionXmlDoc = new XmlDocument();
+                var appConfig = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
+                var sectionProduct = appConfig.GetSection(Section);
+                var myParamsSectionRawXml = sectionProduct.SectionInformation.GetRawXml();
+                var sectionXmlDoc = new XmlDocument();
                 sectionXmlDoc.Load(new StringReader(myParamsSectionRawXml));
-                NameValueSectionHandler SectionHandler = new NameValueSectionHandler();
+                var sectionHandler = new NameValueSectionHandler();
 
-                NameValueCollection SectionHandlerCollection = SectionHandler.Create(null, null, sectionXmlDoc.DocumentElement) as NameValueCollection;
-                AllKeys = SectionHandlerCollection.AllKeys;
+                var sectionHandlerCollection = sectionHandler.Create(null, null, sectionXmlDoc.DocumentElement) as NameValueCollection;
+                AllKeys = sectionHandlerCollection.AllKeys;
 
                 if (AllKeys == null)
                     return -1;
@@ -60,31 +58,31 @@ namespace ConfigFilesLib
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Section"></param>
-        /// <param name="Key"></param>
-        /// <param name="Value"></param>
-        /// <param name="Config"></param>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="config"></param>
         /// <returns></returns>
-        public static int GetValue(string Section, string Key, out string Value, string Config)
+        public static int GetValue(string section, string key, out string value, string config)
         {
-            Value = null;
+            value = null;
 
             try
             {
-                ExeConfigurationFileMap configFileMap = new ExeConfigurationFileMap()
+                var configFileMap = new ExeConfigurationFileMap()
                 {
-                    ExeConfigFilename = Config
+                    ExeConfigFilename = config
                 };
-                var AppConfig = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
-                var SectionProduct = AppConfig.GetSection(Section);
-                string myParamsSectionRawXml = SectionProduct.SectionInformation.GetRawXml();
-                XmlDocument sectionXmlDoc = new XmlDocument();
+                var appConfig = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
+                var sectionProduct = appConfig.GetSection(section);
+                var myParamsSectionRawXml = sectionProduct.SectionInformation.GetRawXml();
+                var sectionXmlDoc = new XmlDocument();
                 sectionXmlDoc.Load(new StringReader(myParamsSectionRawXml));
-                NameValueSectionHandler SectionHandler = new NameValueSectionHandler();
-                NameValueCollection SectionHandlerCollection = SectionHandler.Create(null, null, sectionXmlDoc.DocumentElement) as NameValueCollection;
-                Value = SectionHandlerCollection[Key];
-                ConfigurationManager.RefreshSection("//" + Section);
-                if (Value == null)
+                var sectionHandler = new NameValueSectionHandler();
+                var sectionHandlerCollection = sectionHandler.Create(null, null, sectionXmlDoc.DocumentElement) as NameValueCollection;
+                value = sectionHandlerCollection[key];
+                ConfigurationManager.RefreshSection("//" + section);
+                if (value == null)
                     return -1;
                 return 0;
             }
@@ -98,26 +96,26 @@ namespace ConfigFilesLib
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Section"></param>
-        /// <param name="Key"></param>
-        /// <param name="Value"></param>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         /// <param name="config"></param>
         /// <returns></returns>
 
-        public static int SetValue(string Section, string Key, string Value, string config)
+        public static int SetValue(string section, string key, string value, string config)
         {
             try
             {
-                XmlDocument sectionXmlDoc = new XmlDocument();
+                var sectionXmlDoc = new XmlDocument();
                 sectionXmlDoc.Load(config);
 
                 string x;
-                if (GetValue(Section, Key, out x, config) == 0)
+                if (GetValue(section, key, out x, config) == 0)
                 {
                     var xmlDoc = new XmlDocument();
                     xmlDoc.Load(config);
-                    string node = "//" + Section + "/add[@key='" + Key + "']";
-                    xmlDoc.SelectSingleNode(node).Attributes["value"].Value = Value;
+                    var node = "//" + section + "/add[@key='" + key + "']";
+                    xmlDoc.SelectSingleNode(node).Attributes["value"].Value = value;
                     xmlDoc.Save(config);
                     ConfigurationManager.RefreshSection("//Variables");
                 }
@@ -125,9 +123,9 @@ namespace ConfigFilesLib
                 else
                 {
                     var nodeRegion = sectionXmlDoc.CreateElement("add");
-                    nodeRegion.SetAttribute("key", Key);
-                    nodeRegion.SetAttribute("value", Value);
-                    sectionXmlDoc.SelectSingleNode("//" + Section).AppendChild(nodeRegion);
+                    nodeRegion.SetAttribute("key", key);
+                    nodeRegion.SetAttribute("value", value);
+                    sectionXmlDoc.SelectSingleNode("//" + section).AppendChild(nodeRegion);
                     sectionXmlDoc.Save(config);
                     ConfigurationManager.RefreshSection("//Variables");
                 }
@@ -136,41 +134,39 @@ namespace ConfigFilesLib
             }
             catch (Exception ex)
             {
-                string a = ex.Message;
+                var a = ex.Message;
                 return -1;
             }
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Section"></param>
-        /// <param name="Key"></param>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static int DelKey(string Section, string Key, string config)
+        public static int DelKey(string section, string key, string config)
         {
             try
             {
-                XmlDocument sectionXmlDoc = new XmlDocument();
+                var sectionXmlDoc = new XmlDocument();
                 sectionXmlDoc.Load(config);
 
                 string x;
-                if (GetValue(Section, Key, out x, config) == 0)
-                {
-                    var xmlDoc = new XmlDocument();
-                    xmlDoc.Load(config);
-                    string node = "//" + Section + "/add[@key='" + Key + "']";
-                    XmlNode xmlnode = xmlDoc.SelectSingleNode(node);
-                    xmlnode.ParentNode.RemoveChild(xmlnode);
-                    xmlDoc.Save(config);
-                    ConfigurationManager.RefreshSection("//Variables");
-                }
+                if (GetValue(section, key, out x, config) != 0) return 0;
+                var xmlDoc = new XmlDocument();
+                xmlDoc.Load(config);
+                var node = "//" + section + "/add[@key='" + key + "']";
+                var xmlnode = xmlDoc.SelectSingleNode(node);
+                xmlnode.ParentNode.RemoveChild(xmlnode);
+                xmlDoc.Save(config);
+                ConfigurationManager.RefreshSection("//Variables");
 
                 return 0;
             }
             catch (Exception ex)
             {
-                string a = ex.Message;
+                var a = ex.Message;
                 return -1;
             }
         }
@@ -183,13 +179,13 @@ namespace ConfigFilesLib
         /// <param name="RootValue"></param>
         public static void CreateXMLfile(string XMLfile, string RootValue)
         {
-            XmlDocument XD = new XmlDocument();
-            XmlNode Root = XD.AppendChild(XD.CreateElement(RootValue));
-            XmlNode Child = Root.AppendChild(XD.CreateElement(""));
-            XmlAttribute ChildAtt = Child.Attributes.Append(XD.CreateAttribute("Attribute"));
-            ChildAtt.InnerText = "My innertext";
-            Child.InnerText = "Node Innertext";
-            XD.Save(XMLfile);
+            var xd = new XmlDocument();
+            var root = xd.AppendChild(xd.CreateElement(RootValue));
+            var child = root.AppendChild(xd.CreateElement(""));
+            var childAtt = child.Attributes.Append(xd.CreateAttribute("Attribute"));
+            childAtt.InnerText = "My innertext";
+            child.InnerText = "Node Innertext";
+            xd.Save(XMLfile);
 
         }
 
