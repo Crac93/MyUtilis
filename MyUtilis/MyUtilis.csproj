@@ -72,6 +72,8 @@
     <Compile Include="FilesManager\LogFiles.cs" />
     <Compile Include="Generalnformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectionDll\RefelctionClass.cs" />
+    <Compile Include="ReflectionDll\StructReflection.cs" />
     <Compile Include="Windows\Applications.cs" />
     <Compile Include="Windows\CMDClass.cs" />
     <Compile Include="Windows\ConsoleClass.cs" />
